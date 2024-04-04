@@ -1,0 +1,105 @@
+<html>
+<body>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+ <h3>Interview Results</h3>
+
+<div id="sankey_multiple" style="width: 900px; height: 300px;"></div>
+
+<div id="series_chart_div" style="width: 900px; height: 500px;"></div>
+
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["sankey"]});
+  google.charts.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'From');
+    data.addColumn('string', 'To');
+    data.addColumn('number', 'Weight');
+    data.addRows([
+        [ 'Applications', 'No Answer', 4 ],
+        [ 'Offers', 'Accepted', 1 ],
+       [ 'Offers', 'Declined', 1 ],
+       [ 'Interviews', 'Offers', 2 ],
+       [ 'Interviews', 'No Offers', 2 ],
+       [ 'Applications', 'Interviews', 4 ],
+       [ 'Applications', 'Rejected', 9 ]
+       
+       
+    ]);
+
+    // Set chart options
+    var options = {
+      width: 600,
+      title: 'Interview Results',
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+    chart.draw(data, options);
+   }
+
+   google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawSeriesChart);
+
+    function drawSeriesChart() {
+
+      var data = google.visualization.arrayToDataTable([
+      ['Country','Healthcare Expenditure','Infant Mortality Rate','Region','Population'],
+        ['AUS',4919.24,3.3,'Australia',25800000],
+        ['AUT',5705.10,2.9,'Europe',8900000],
+        ['BEL',5458.40,3.7,'Europe',11600000],
+        ['CAN',5370.44,4.4,'North America',38100000],
+        ['CHL',2291.46,6.5,'South America',19300000],
+        ['COL',1276.21,17,'South America',50300000],
+        ['CRI',1599.82,8.2,'North America',5100000],
+        ['CZE',3417.49,2.6,'Europe',10700000],
+        ['DNK',5477.57,2.1,'Europe',5800000],
+        ['EST',2507.07,1.6,'Europe',1300000],
+        ['FIN',4561.47,2.1,'Europe',5500000],
+        ['FRA',5274.26,3.8,'Europe',67100000],
+        ['DEU',6518.00,3.2,'Europe',83100000],
+        ['GRC',2318.96,3.7,'Europe',10400000],
+        ['HUN',2169.77,3.6,'Europe',9600000],
+        ['ISL',4540.76,1.1,'Europe',343000],
+        ['IRL',5083.21,2.8,'Europe',4900000],
+        ['ISR',2903.41,3,'Asia',9300000],
+        ['ITA',3653.40,2.4,'Europe',60400000],
+        ['JPN',4691.46,1.9,'Asia',125400000],
+        ['KOR',3406.26,2.7,'Asia',51800000],
+        ['LVA',2074.01,3.4,'Europe',1800000],
+        ['LTU',2727.19,3.3,'Europe',2700000],
+        ['LUX',5414.48,4.7,'Europe',634000],
+        ['MEX',1132.97,13.1,'North America',126200000],
+        ['NLD',5739.20,3.6,'Europe',17500000],
+        ['NOR',6744.62,2,'Europe',5400000],
+        ['POL',2289.31,3.8,'Europe',38200000],
+        ['PRT',3347.43,2.8,'Europe',10300000],
+        ['SVK',2189.05,5.1,'Europe',5500000],
+        ['SVN',3303.47,2.1,'Europe',2100000],
+        ['ESP',3600.28,2.6,'Europe',47300000],
+        ['SWE',5551.94,2.1,'Europe',10400000],
+        ['CHE',7138.06,3.3,'Europe',8700000],
+        ['TUR',1266.94,9,'Asia',84300000],
+        ['GBR',4500.14,4,'Europe',68200000],
+        ['USA',10948.48,5.6,'North America',331400000]
+
+
+      ]);
+
+      var options = {
+        title: 'Healthcare Expenditure vs Infant Mortality Rate in OECD countries (2019).' +
+          ' X=Healthcare Expenditure, Y=Infant Mortality Rate, Bubble size=Population, Bubble color=Region',
+        hAxis: {title: 'Healthcare Expenditure per Capita'},
+        vAxis: {title: 'Infant Mortality Rate (Deaths/1 000 live births)'},
+        bubble: {textStyle: {fontSize: 9, auraColor: 'none'} }
+      };
+
+      var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+      chart.draw(data, options);
+    }
+
+</script>
+</body>
+</html>
